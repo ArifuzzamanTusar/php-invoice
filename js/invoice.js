@@ -25,9 +25,9 @@ $(document).ready(function () {
 		htmlRows += '<td><input type="number" name="quantity[]" id="quantity_' + count + '" class="form-control quantity" autocomplete="off"></td>';
 		htmlRows += '<td> <select name="uom[]" id="uom_' + count + '" class="form-control"> <option value="PCS">PCS</option> <option value="KG">KG</option> </select> </td>';
 		htmlRows += '<td><input type="text" name="price[]" id="price_' + count + '" class="form-control price" autocomplete="off"></td>';
-		htmlRows += '<td><input type="number" name="tax[]" id="tax_' + count + '" class="form-control price" autocomplete="off"></td>';
-		htmlRows += '<td><input type="number" name="taxtot[]" id="taxtot_' + count + '" class="form-control price" autocomplete="off"></td>';
-		htmlRows += '<td><input type="number" name="total[]" id="total_' + count + '" class="form-control total" autocomplete="off"></td>';
+		htmlRows += '<td><input type="text" name="tax[]" id="tax_' + count + '" class="form-control price" autocomplete="off"></td>';
+		htmlRows += '<td><input type="text" name="taxtot[]" id="taxtot_' + count + '" class="form-control price" autocomplete="off"></td>';
+		htmlRows += '<td><input type="text" name="total[]" id="total_' + count + '" class="form-control total" autocomplete="off"></td>';
 		htmlRows += '</tr>';
 
 
