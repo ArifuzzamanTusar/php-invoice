@@ -40,30 +40,40 @@
 <body class="text-center">
 
     <main class="form-signin">
-        <form  method="post" action="">
+        <form method="post" action="">
             <h2 class="py-5">INVOICE SYSTEM</h2>
 
             <div class="form-floating">
-                <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" value="test@test.com" required>
-                <label for="floatingInput">Email address</label>
+                <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" value="" required>
+                <label for="email">Email address</label>
             </div>
             <div class="form-floating">
-                <input name="pwd" type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
-                <label for="floatingPassword">Password</label>
+                <input name="pwd" type="password" class="form-control" id="password" placeholder="Password" required>
+                <label for="password">Password</label>
             </div>
 
             <button class="w-100 btn btn-lg btn-primary" type="submit" name="login">Sign in</button>
-            <?php if ($loginError ) { ?>
-				<div class=" my-2 p-3 alert alert-warning"><?php echo $loginError; ?></div>
-			<?php } ?>
-            <p class="mt-5 mb-3 text-muted">
-                user: test@test.com <br>
-                pass: 12345
+            <?php if ($loginError) { ?>
+                <div class=" my-2 p-3 alert alert-warning"><?php echo $loginError; ?></div>
+            <?php } ?>
+
             </p>
         </form>
+        <p class="mt-5 mb-2 text-muted">
+            user: test@test.com <br>
+            pass: 12345
+                </p>
+        <button class="btn btn-outline-success" onclick="loaddata()">Copy</buton>
     </main>
 
 
+
+    <script>
+        const loaddata = () => {
+            document.getElementById('email').value = 'test@test.com';
+            document.getElementById('password').value = '12345';
+        }
+    </script>
 
 </body>
 

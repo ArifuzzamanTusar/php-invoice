@@ -57,25 +57,29 @@ class Invoice{
 	
 
 
+	// --------------  SAVE INVOICE ---------------
+
 
 	public function saveInvoice($POST,$currentNumber) {		
 		$sqlInsert = "
-			INSERT INTO ".$this->invoiceOrderTable."(user_id, order_receiver_name, order_receiver_address, order_total_before_tax, order_total_tax,  order_total_after_tax) 
-			VALUES ('".$POST['userId']."', '".$POST['companyName']."', '".$POST['address']."', '".$POST['netAmount']."', '".$POST['taxAmount']."', '".$POST['subTotal']."')";		
+			INSERT INTO ".$this->invoiceOrderTable."(user_id, order_receiver_name, order_receiver_address, order_total_before_tax, order_total_tax,order_due_date, order_date, inv_ref, order_total_after_tax) 
+			VALUES ('".$POST['userId']."', '".$POST['companyName']."', '".$POST['address']."', '".$POST['netAmount']."', '".$POST['taxAmount']."','".$POST['due_date']."','".$POST['order_date']."','".$POST['ref']."', '".$POST['subTotal']."')";		
 		mysqli_query($this->dbConnect, $sqlInsert);
 
 
 		$lastInsertId = mysqli_insert_id($this->dbConnect);
 		for ($i = 0; $i < count($POST['productName']); $i++) {
 			$sqlInsertItem = "
-			INSERT INTO ".$this->invoiceOrderItemTable."(order_id, item_code, item_name, order_item_quantity, order_item_price, order_item_final_amount) 
-			VALUES ('".$currentNumber."', '".$POST['productDisc'][$i]."', '".$POST['productName'][$i]."', '".$POST['quantity'][$i]."', '".$POST['price'][$i]."', '".$POST['total'][$i]."')";			
+			INSERT INTO ".$this->invoiceOrderItemTable."(order_id, item_disc, item_name, order_item_quantity,uom, order_item_price,tax_percent,tax_amount, order_item_final_amount,date) 
+			VALUES ('".$currentNumber."', '".$POST['productDisc'][$i]."', '".$POST['productName'][$i]."', '".$POST['quantity'][$i]."', '".$POST['uom'][$i]."', '".$POST['price'][$i]."','".$POST['tax'][$i]."', '".$POST['taxtot'][$i]."',  '".$POST['total'][$i]."',  '".$POST['date'][$i]."')";			
 			mysqli_query($this->dbConnect, $sqlInsertItem);
-		}       	
+		}   
+		
+		// echo $currentNumber;
 	}	
 
 
-
+/*
 	public function updateInvoice($POST) {
 		if($POST['invoiceId']) {	
 			$sqlInsert = "
@@ -87,11 +91,13 @@ class Invoice{
 		$this->deleteInvoiceItems($POST['invoiceId']);
 		for ($i = 0; $i < count($POST['productCode']); $i++) {			
 			$sqlInsertItem = "
-				INSERT INTO ".$this->invoiceOrderItemTable."(order_id, item_code, item_name, order_item_quantity, order_item_price, order_item_final_amount) 
+				INSERT INTO ".$this->invoiceOrderItemTable."(order_id, item_disc, item_name, order_item_quantity, order_item_price, order_item_final_amount) 
 				VALUES ('".$POST['invoiceId']."', '".$POST['productCode'][$i]."', '".$POST['productName'][$i]."', '".$POST['quantity'][$i]."', '".$POST['price'][$i]."', '".$POST['total'][$i]."')";			
 			mysqli_query($this->dbConnect, $sqlInsertItem);			
 		}       	
 	}	
+
+	*/
 	public function getInvoiceList(){
 		$sqlQuery = "
 			SELECT * FROM ".$this->invoiceOrderTable." 

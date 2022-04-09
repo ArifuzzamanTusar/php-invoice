@@ -114,13 +114,13 @@ foreach ($lastinvoiceNumber as $number) {
                     <div class="input-group-prepend col-3">
                         <span class="input-group-text" id="">Invoice Date</span>
                     </div>
-                    <input type="date" class="form-control">
+                    <input name="order_date" type="date" class="form-control">
                 </div>
                 <div class="input-group py-2">
                     <div class="input-group-prepend col-3">
                         <span class="input-group-text" id="">Due Date</span>
                     </div>
-                    <input type="date" class="form-control">
+                    <input name="due_date" type="date" class="form-control">
                 </div>
                 <div class="input-group py-2">
                     <div class="input-group-prepend col-3">
@@ -132,7 +132,7 @@ foreach ($lastinvoiceNumber as $number) {
                     <div class="input-group-prepend col-3">
                         <span class="input-group-text" id="">Invoice Reference</span>
                     </div>
-                    <input type="text" class="form-control">
+                    <input name="ref" type="text" class="form-control">
                 </div>
                 <div class="input-group py-2">
                     <div class="input-group-prepend col-3">

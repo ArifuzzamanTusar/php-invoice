@@ -20,13 +20,13 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="all-users.php">
+              <a class="nav-link  <?php if (isset($page_slug)) {if ($page_slug == 'all-user') {echo "active";}}?>" href="all-users.php">
                 <span data-feather="users"></span>
                 All Customers
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="create-user.php">
+              <a class="nav-link  <?php if (isset($page_slug)) {if ($page_slug == 'add-user') {echo "active";}}?>" href="create-user.php">
                 <span data-feather="users"></span>
                 Add New Customer
               </a>

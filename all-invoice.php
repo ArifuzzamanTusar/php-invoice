@@ -15,29 +15,29 @@ include 'includes/side-nav.php';
 
 
 
-<h2>Section title</h2>
+<h2 class="p-3 text-center">All Invoices</h2>
 <div class="table-responsive">
-  <table class="table table-striped table-sm">
-    <thead>
+  <table class="table  table-sm">
+    <thead  class="thead-dark">
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Header</th>
-        <th scope="col">Header</th>
-        <th scope="col">Header</th>
-        <th scope="col">Header</th>
+        <th scope="col">Invoice #ID</th>
+        <th scope="col">Invoice Created at</th>
+        <th scope="col">Customer Name</th>
+        <th scope="col">Total Amount</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
       <?php
       $invoiceList = $invoice->getInvoiceList();
       foreach ($invoiceList as $invoiceDetails) {
-        $invoiceDate = date("d/M/Y, H:i:s", strtotime($invoiceDetails["order_date"]));
+        $invoiceDate = date("d M, Y", strtotime($invoiceDetails["order_date"]));
         echo '
               <tr>
-                <td>' . $invoiceDetails["order_id"] . '</td>
+                <td>#' . $invoiceDetails["order_id"] . '</td>
                 <td>' . $invoiceDate . '</td>
                 <td>' . $invoiceDetails["order_receiver_name"] . '</td>
-                <td>' . $invoiceDetails["order_total_after_tax"] . '</td>
+                <td>' . $invoiceDetails["order_total_after_tax"] . ' €</td>
                 <td>
                     <a href="print_invoice.php?invoice_id=' . $invoiceDetails["order_id"] . '" title="Print Invoice" class="btn btn-success m-2">Print</a>
                  
