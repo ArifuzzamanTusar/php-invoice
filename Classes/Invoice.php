@@ -58,7 +58,7 @@ class Invoice{
 
 
 
-	public function saveInvoice($POST) {		
+	public function saveInvoice($POST,$currentNumber) {		
 		$sqlInsert = "
 			INSERT INTO ".$this->invoiceOrderTable."(user_id, order_receiver_name, order_receiver_address, order_total_before_tax, order_total_tax,  order_total_after_tax) 
 			VALUES ('".$POST['userId']."', '".$POST['companyName']."', '".$POST['address']."', '".$POST['netAmount']."', '".$POST['taxAmount']."', '".$POST['subTotal']."')";		
@@ -66,10 +66,10 @@ class Invoice{
 
 
 		$lastInsertId = mysqli_insert_id($this->dbConnect);
-		for ($i = 0; $i < count($POST['productCode']); $i++) {
+		for ($i = 0; $i < count($POST['productName']); $i++) {
 			$sqlInsertItem = "
 			INSERT INTO ".$this->invoiceOrderItemTable."(order_id, item_code, item_name, order_item_quantity, order_item_price, order_item_final_amount) 
-			VALUES ('".$lastInsertId."', '".$POST['productCode'][$i]."', '".$POST['productName'][$i]."', '".$POST['quantity'][$i]."', '".$POST['price'][$i]."', '".$POST['total'][$i]."')";			
+			VALUES ('".$currentNumber."', '".$POST['productDisc'][$i]."', '".$POST['productName'][$i]."', '".$POST['quantity'][$i]."', '".$POST['price'][$i]."', '".$POST['total'][$i]."')";			
 			mysqli_query($this->dbConnect, $sqlInsertItem);
 		}       	
 	}	

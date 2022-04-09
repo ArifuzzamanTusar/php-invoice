@@ -12,27 +12,34 @@ include 'includes/side-nav.php';
 
 $lastinvoiceNumber = $invoice->currentInvoiceNumber();
 foreach ($lastinvoiceNumber as $number) {
-    $currentNumber = $number['order_id'];
+    $currentNumber = $number['order_id'] + 1;
 }
 
 
-// SUBMITTING 
-if (isset($_POST['email']) && isset($_POST['subTotal']) ) {
-    $invoice->saveInvoice($_POST);
-    // header("Location:invoice_list.php");
-    echo "<h1>UPLOADED ".$_POST['companyName']."</h1>";
-}
+
 
 
 ?>
 
 
 
-
 <div class="container-fluid">
-    <h2>Create New Envoice</h2>
+    <h2 class="text-center py-3">Create New Envoice</h2>
 
+    <?php
 
+    // SUBMITTING 
+    if (isset($_POST['email']) && isset($_POST['subTotal'])) {
+        $invoice->saveInvoice($_POST, $currentNumber);
+        // header("Location:invoice_list.php");
+        echo '
+        <div class="alert alert-success" role="alert">
+            Invoice Created Successfully!  <a href="all-invoice.php">Check Invoice</a>
+        </div>
+
+    ';
+    }
+    ?>
     <!-- Form Starts  -->
     <form action="" method="post">
 
@@ -131,19 +138,19 @@ if (isset($_POST['email']) && isset($_POST['subTotal']) ) {
                     <div class="input-group-prepend col-3">
                         <span class="input-group-text">Net Amount(EUR)</span>
                     </div>
-                    <input type="number" class="form-control" id="netAmount" name="netAmount">
+                    <input type="text" class="form-control" id="netAmount" name="netAmount">
                 </div>
                 <div class="input-group py-2">
                     <div class="input-group-prepend col-3">
                         <span class="input-group-text">VAT Amount</span>
                     </div>
-                    <input type="number" class="form-control" id="taxAmount" name="taxAmount">
+                    <input type="text" class="form-control" id="taxAmount" name="taxAmount">
                 </div>
                 <div class="input-group py-2">
                     <div class="input-group-prepend col-3">
                         <span class="input-group-text">Gross Total</span>
                     </div>
-                    <input type="number" class="form-control" id="subTotal" name="subTotal" required>
+                    <input type="text" class="form-control" id="subTotal" name="subTotal" required>
                 </div>
             </div>
         </div>
@@ -176,10 +183,10 @@ if (isset($_POST['email']) && isset($_POST['subTotal']) ) {
                                 <option value="PCS">PCS</option>
                                 <option value="KG">KG</option>
                             </select> </td>
-                        <td><input type="number" name="price[]" id="price_1" class="form-control price" autocomplete="off"></td>
-                        <td><input type="number" name="tax[]" id="tax_1" class="form-control price" autocomplete="off"></td>
-                        <td><input type="number" name="taxtot[]" id="taxtot_1" class="form-control price" autocomplete="off"></td>
-                        <td><input type="number" name="total[]" id="total_1" class="form-control total" autocomplete="off"></td>
+                        <td><input type="text" name="price[]" id="price_1" class="form-control price" autocomplete="off"></td>
+                        <td><input type="text" name="tax[]" id="tax_1" class="form-control price" autocomplete="off"></td>
+                        <td><input type="text" name="taxtot[]" id="taxtot_1" class="form-control price" autocomplete="off"></td>
+                        <td><input type="text" name="total[]" id="total_1" class="form-control total" autocomplete="off"></td>
                     </tr>
                 </table>
             </div>
@@ -190,7 +197,7 @@ if (isset($_POST['email']) && isset($_POST['subTotal']) ) {
                 <button class="btn btn-success" id="addRows" type="button">+ Add More</button>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-              
+
                 <div class="form-group">
                     <input type="hidden" value="<?php echo $_SESSION['userid']; ?>" class="form-control" name="userId">
                     <input data-loading-text="Saving Invoice..." type="submit" name="invoice_btn" value="Save Invoice" class="btn col-12 btn-lg btn-success submit_btn invoice-save-btm">
