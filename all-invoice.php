@@ -41,7 +41,7 @@ include 'includes/side-nav.php';
                 <td>
                     <a href="print_invoice.php?invoice_id=' . $invoiceDetails["order_id"] . '" title="Print Invoice" class="btn btn-success m-2">Print</a>
                  
-                    <a href="#" id="' . $invoiceDetails["order_id"] . '" class="deleteInvoice btn btn-danger m-2"  title="Delete Invoice">Delete</a>
+                    <a href="action.php?delete_invoice='.$invoiceDetails["order_id"].'" class="deleteInvoice btn btn-danger m-2"  title="Delete Invoice">Delete</a>
                 </td>
                
               </tr>

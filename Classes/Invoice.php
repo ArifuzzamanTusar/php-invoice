@@ -112,6 +112,9 @@ class Invoice{
 			WHERE order_id = '$invoiceId'";
 		return  $this->getData($sqlQuery);	
 	}
+
+
+	// ---------------- DELETING PROCESS -------------
 	public function deleteInvoiceItems($invoiceId){
 		$sqlQuery = "
 			DELETE FROM ".$this->invoiceOrderItemTable." 
